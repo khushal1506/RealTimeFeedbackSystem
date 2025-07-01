@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Inspiron</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/SignIn.css') }}">
+    <style>
+        .flash-messages {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            display: none;  /* Hide by default */
+        }
+        
+        .flash-messages.show {
+            display: block;  /* Show when there are messages */
+        }
+        
+        .flash-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+        }
+
+        .flash-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <div class="logo">Inspiron</div>
+            <h1>Sign In</h1>
+
+            <!-- Flash Messages Section -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="flash-messages show">
+                        {% for category, message in messages %}
+                            <div class="flash-message {% if category == 'success' %}success{% endif %}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form action="{{ url_for('SignIn') }}" method="POST">
+                <div class="form-group">
+                    <label for="username"><b>User Name</b></label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email"><b>Email</b></label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" name="password" id="password" placeholder="••••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password"><b>Confirm Password</b></label>
+                    <input type="password" name="confirm_password" id="confirm-password" placeholder="••••••••••" required>
+                </div>
+                <button type="submit" class="sign-up-btn">SIGN UP →</button>
+            </form>
+            <div class="social-login">
+                <p class="social-text">or continue with</p>
+                <div class="social-buttons">
+                    <button type="button" class="social-btn">  <!-- Added type="button" -->
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 488 512'%3E%3Cpath fill='%234285f4' d='M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z'/%3E%3C/svg%3E" alt="Google">
+                        <p id="google">Google</p>
+                    </button>
+                    <button type="button" class="social-btn">  <!-- Added type="button" -->
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3Cpath fill='%231877f2' d='M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z'/%3E%3C/svg%3E" alt="Facebook">
+                        <p id="facebook">Facebook</p>
+                    </button>
+                </div>
+            </div>
+            <div class="login-link">
+                Already have an account? <a href="{{ url_for('logInPage') }}">Login Here</a>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="{{ url_for('static', filename='images/pic.png') }}" alt="Robot illustration">
+        </div>
+        <a href="{{ url_for('home') }}" class="home-icon">
+            <img src="{{ url_for('static', filename='images/home.jpg') }}" alt="Home">
+        </a>
+    </div>
+</body>
+</html>

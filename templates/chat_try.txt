@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Feedback Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .collapsed {
+            width: 64px !important;
+        }
+
+        .collapsed .menu-text {
+            display: none;
+        }
+
+        #sidebar {
+            padding: 15px 0 10px 15px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+        }
+
+        .baricons{
+            display: flex;
+            align-items:center;
+            justify-content: space-between;
+        }
+
+        .righticon{
+            padding-right: 20px;
+
+
+        }
+
+        .righticon button img{
+            height: 25px;
+            width: 25px;
+            margin-right: 10px;
+        }
+        .navbar{
+            border-radius: 15px 15px 15px 15px;
+            margin: 10px 10px 0 10px;
+        }
+
+        #toggleSidebar {
+            margin: 0 0 10px 0;
+        }
+
+        .menu-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 5px;
+        }
+
+        .collapsed .menu-item:hover::after {
+            content: attr(data-text);
+            position: absolute;
+            left: 70px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            white-space: nowrap;
+            font-size: 14px;
+            z-index: 10;
+        }
+
+        .dashboard {
+            background-color:#93C5FD;
+        }
+
+        .dashboard-menu {
+            color: black;
+        }
+
+        .menu-item:hover {
+            box-shadow: 0 0 5px rgb(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s linear;
+        }
+
+        .icons {
+            width: 20px;
+            height: 20px;
+        }
+
+        #videoPreview {
+            display: none;
+        }
+
+        /* Allow wrapping of text inside the input field */
+        #speechInput {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            height: auto;
+        }
+
+        .collapsed {
+    width: 64px !important;
+}
+
+.collapsed .menu-text {
+    display: none;
+}
+
+.collapsed .menu-item svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+    </style>
+</head>
+
+<body class="flex h-screen bg-blue-200 font-sans">
+    <aside id="sidebar"
+        class="dashboard text-white h-screen w-64 p-4 border-gray-700 flex flex-col transition-all duration-300 ease-in-out">
+        <div class="baricons">
+            <div class="leficon">
+                <button id="toggleSidebar" class="text-black text-xl mb-4 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+            <div class="righticon">
+                <button><img src="images/Search.png" alt=""></button>
+                <button><img src="images/Chat Room.png" alt=""></button>
+            </div>
+        </div>
+        <div class="dashboard-menu flex flex-col gap-6 mt-6">
+            <div class="menu-item" data-text="Home">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span class="menu-text">Home</span>
+            </div>
+
+            <div class="menu-item" data-text="Recent Chats">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+</svg>
+                <span class="menu-text">Recent Chats</span>
+            </div>
+            <div class="menu-item" data-text="Uploads">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 10h11M9 21V3m4 18v-9m4 9v-5" />
+                </svg>
+                <span class="menu-text">TimeLine</span>
+            </div>
+
+        </div>
+    </aside>
+
+    <div class="flex-1 flex flex-col">
+        <header class=" navbar flex justify-end items-center p-4 bg-blue-300">
+            <div
+                class="profile-icon bg-blue-600 text-white w-8 h-8 flex items-center justify-center rounded-full text-sm cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5.121 17.804A9.004 9.004 0 0112 15a9.003 9.003 0 016.879 2.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+        </header>
+        <main class="flex-1 flex flex-col p-4 gap-4">
+            <div class="chat-container flex-1 bg-white bg-opacity-90 rounded-lg p-6 overflow-y-auto flex flex-col gap-4"
+                style="height: 300px;">
+                <div class="welcome-container text-center p-6">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/robot-23HCqrk2ocQemvQgD7cBbNJJt8PQ9e.png"
+                        alt="Chat Robot" class="w-32 mx-auto mb-4">
+                    <h1 class="text-blue-600 text-xl font-semibold">Let's improve your work together!</h1>
+                    <p>Upload your assignment (PDF or image) and I'll provide feedback.</p>
+                </div>
+              <div id="image-preview" class="hidden">  <img id="uploaded-image" src="#" alt="Uploaded Image" class="max-w-full max-h-64 mx-auto">
+            </div>
+                <div id="feedback-area"></div>
+            </div>
+
+             <div class="input-container flex items-center gap-4 p-4 bg-white rounded-lg">
+                <input type="file" id="fileUpload" class="hidden" accept=".pdf,image/*">
+                <label for="fileUpload" class="cursor-pointer icons"><img src="images/link.webp" alt=""></label>
+                <button id="microphoneButton" class="cursor-pointer icons"><img src="images/mic.jpg" alt=""></button>
+                <button id="cameraButton" class="cursor-pointer icons"><img src="images/cam.jpg" alt=""></button>
+
+                <input type="text" id="speechInput" class="flex-1 border-none outline-none p-2 text-lg chat-input"
+                    placeholder="Type your message...">
+                <button
+                    class="bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full text-xl send-button">➤</button>
+            </div>
+        </main>
+   <!-- </div>-->
+
+    <script>
+        const fileUpload = document.getElementById('fileUpload');
+        const textInput = document.getElementById('textInput');
+        const uploadButton = document.getElementById('uploadButton');
+        const feedbackArea = document.getElementById('feedback-area');
+
+        uploadButton.addEventListener('click', () => {
+            const file = fileUpload.files[0];
+            const additionalText = textInput.value;
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('text', additionalText);
+
+                // Image Preview
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('uploaded-image').src = e.target.result;
+                    document.getElementById('image-preview').classList.remove('hidden'); // Show preview
+                }
+                reader.readAsDataURL(file);
+
+                fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.text()) // Or response.json() if you send JSON
+                    .then(feedback => {
+                        feedbackArea.innerText = feedback; // Display the feedback
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    feedbackArea.innerText = "Error uploading or processing image.";
+                });
+            }
+        });
+</script>
+</body>
+</html>

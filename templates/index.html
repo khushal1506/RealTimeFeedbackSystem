@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+       
+
+  
+        <!-- Webpage Title -->
+        <title>Inspiron</title>
+
+        <!-- Styles -->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/fontawesome-all.css') }}" rel="stylesheet" />
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/swiper.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/magnific-popup.css') }}" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- ICONS CDN FONTAWESOME -->
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Favicon  -->
+        <link rel="icon" href="{{ url_for('static', filename='images/logo.png') }}" />
+    </head>
+    <body data-spy="scroll" data-target=".fixed-top">
+
+       <!-- Navigation -->
+<nav class="navbar fixed-top">
+    <div class="container sm:px-4 lg:px-8 flex flex-wrap items-center justify-between lg:flex-nowrap">
+        
+        <!-- Logo on the left -->
+        <a class="inline-block mr-4 py-0.5 text-xl whitespace-nowrap hover:no-underline focus:no-underline" href="index.html">
+            <h1 class="inspiron-logo">Inspiron</h1>
+        </a>
+
+        <!-- Grouped navigation links on the right -->
+        <div class="flex items-center">
+            <div class="navbar-collapse offcanvas-collapse lg:flex lg:flex-grow lg:items-center" id="navbarsExampleDefault">
+                <!-- Wrapping the navigation links in a div -->
+                <div class="nav-links">
+                    <ul class="pl-0 mt-3 mb-2 ml-auto flex flex-col list-none lg:mt-0 lg:mb-0 lg:flex-row">
+                        <li>
+                            <a class="nav-link page-scroll" href="#header" onclick="setActive(this)">Home</a>
+                        </li>
+                        <li>
+                            <a class="nav-link page-scroll" href="#features" onclick="setActive(this)">Features</a>
+                        </li>
+                        <li>
+                            <a class="nav-link page-scroll" href="#details" onclick="setActive(this)">Details</a>
+                        </li>
+                        <li>
+                            <a class="nav-link page-scroll" href="#contact" onclick="setActive(this)">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Auth buttons (Log In and Sign Up) -->
+            <!-- <div class="auth-buttons">
+                <a class="top-buttons" href="{{ url_for('logInPage') }}" id="login">Log In</a>
+                <a class="top-buttons" href="{{ url_for('signInPage') }}" id="signup">Sign Up</a> 
+            </div> -->
+
+            <!-- Dark/Light Theme Toggle Button -->
+            
+        </div> <!-- end of flex items-center -->
+    </div> <!-- end of container -->
+</nav> <!-- end of navbar -->
+
+        <!-- Header -->
+        <!-- Header -->
+<header id="header" class="header py-28 text-center md:pt-36 lg:text-left xl:pt-44 xl:pb-32">
+    <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-2 lg:gap-x-8">
+        <div class="mb-16 lg:mt-32 xl:mt-40 xl:mr-12">
+            <h1 class="h1-large mb-5">Real-time Feedback System For Assignments</h1>
+            <p class="p-large mb-8">Instant feedback, smarter learning—transform the way you approach assignments with real-time insights.</p>
+            <a class="btn-solid-lg"  href="{{ url_for('chat_main') }}">
+                Try Now
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                  </svg>                   -->
+            </a>
+        </div>
+        <div class="xl:text-right">
+            <img class="inline" src="{{ url_for('static', filename='images/front.png') }}" alt="alternative" />
+        </div>
+    </div> <!-- end of container -->
+</header> <!-- end of header -->
+
+<!-- Introduction -->
+<div class="pt-4 pb-14 text-center introduction">
+    <div class="container px-4 sm:px-8 xl:px-4">
+        <p class="mb-4 text-gray-800 text-3xl leading-10 lg:max-w-5xl lg:mx-auto">Inspiron takes assignment feedback to the next level. It’s the ultimate tool for delivering real-time insights with ease. Start using it today, and you’ll never look back!</p>
+    </div> <!-- end of container -->
+</div>
+<!-- end of introduction -->
+
+
+
+        <!-- Features -->
+        <div id="features" class="cards-1">
+            <div class="container px-4 sm:px-8 xl:px-4">
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-1.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Platform Integration</h5>
+                        <p class="mb-4"> Seamlessly integrates with your existing learning management systems for a smooth feedback experience.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-2.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Easy On Resources</h5>
+                        <p class="mb-4">Optimized for minimal resource consumption, ensuring smooth performance without overloading your system.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-3.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Great Performance</h5>
+                        <p class="mb-4">Delivers fast, reliable, and accurate real-time feedback to maximize learning outcomes efficiently.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-4.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Educational Institutions</h5>
+                        <p class="mb-4">Schools, colleges, and universities can streamline assignment evaluation with this system, saving educators time while delivering detailed feedback.
+                        </p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">  
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-5.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Online Learning Platforms</h5>
+                        <p class="mb-4">Platforms like Coursera, Udemy, and edX can automate grading to provide instant, personalized feedback, improving user engagement.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-image">
+                        <img src="{{ url_for('static', filename='images/features-icon-6.svg') }}" alt="alternative" />
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">HR Assessments</h5>
+                        <p class="mb-4">Companies can use the system to evaluate candidate tests instantly, speeding up recruitment with objective results.</p>
+                    </div>
+                </div>
+                <!-- end of card -->
+
+            </div> <!-- end of container -->
+        </div> <!-- end of cards-1 -->
+        <!-- end of features -->
+
+
+        <!-- Details 1 -->
+        <div id="details" class="pt-12 pb-16 lg:pt-16">
+            <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div class="lg:col-span-5">
+                    <div class="mb-16 lg:mb-0 xl:mt-16">
+                        <h2 class="mb-6"> AI-Powered Evaluation</h2>
+                        <p class="mb-4">Our system accurately evaluates assignments by analyzing both text-based and mathematical problems. With Vision Transformers and Encoder-Decoder models, we ensure precise recognition, grading, and contextual understanding of handwritten and digital submissions. This automation not only saves time but also enhances the quality of feedback, making the assessment process more efficient." </p>
+                        <!-- <p class="mb-4">With a commitment to continuous evolution and a focus on results, we are redefining the standards of academic feedback systems, making education smarter, faster, and more impactful.</p> -->
+                    </div>
+                </div> <!-- end of col -->
+                <div class="lg:col-span-7">
+                    <div class="xl:ml-14">
+                        <img class="inline" src="{{ url_for('static', filename='images/ai-powerd.png') }}" alt="alternative" />
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of container -->
+        </div>
+        <!-- end of details 1 -->
+
+
+        <!-- Details 2 -->
+        <div class="py-24" id="details2">
+            <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div class="lg:col-span-7">
+                    <div class="mb-12 lg:mb-0 xl:mr-14">
+                        <img class="inline-1" src="{{ url_for('static', filename='images/adapt_learn.png') }}" alt="alternative" />
+                    </div>
+                </div> <!-- end of col -->
+                <div class="lg:col-span-5">
+                    <div class="xl:mt-12">
+                        <h2 class="mb-6">Adaptive Learning Insights</h2>
+                     <p> Beyond just grading, our system provides insightful feedback tailored to each user. By analyzing student performance, it generates personalized recommendations, including relevant study materials, video lectures, and practice resources. This approach bridges learning gaps, helping students improve progressively while allowing educators to track growth patterns and offer targeted guidance.
+
+                     </p>
+                        </div>
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of container -->
+        
+        <!-- end of details 2 -->
+
+
+
+
+        <!-- Details 3 -->
+        <div class="pt-16 pb-12" id="details3">
+            <div class="container px-4 sm:px-8 lg:grid lg:grid-cols-12 lg:gap-x-12">
+                <div class="lg:col-span-5">
+                    <div class="mb-16 lg:mb-0 xl:mt-16">
+                        <h2 class="mb-6"> Multi-Format Compatibility</h2>
+                        <p>Our system supports multiple formats, including PDFs, handwritten images, and scanned documents, ensuring seamless assignment evaluation.</p>
+                        <p>Whether it's complex math equations or written responses, our AI processes submissions with precision, making it accessible and easy to use for students and educators.</p>
+
+                        </p>
+                    </div>
+                </div> <!-- end of col -->
+                <div class="lg:col-span-7">
+                    <div class="ml-14">
+                        <img class="inline-2" src="{{ url_for('static', filename='images/compact.png') }}" alt="alternative" />
+                    </div>
+                </div> <!-- end of col -->
+            </div> <!-- end of container -->
+        </div>
+        <!-- end of details 3 -->
+
+
+
+      
+
+        
+        <div class="contact-section" id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions? Reach out to us!</p>
+            
+            <div class="contact-info">
+                <div>
+                    <i>📧</i>
+                    <p>Khushal.nikam1527@gmail.com</p>
+                </div>
+                <div>
+                    <i>📞</i>
+                    <p>+9100000000000</p>
+                </div>
+                <div>
+                    <i>📍</i>
+                    <p>Nashik</p>
+                </div>
+            </div>
+    
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="4" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        
+
+        <!-- Scripts -->
+        <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script> <!-- jQuery for JavaScript plugins -->
+        <script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+        <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script> <!-- Swiper for image and text sliders -->
+        <script src="{{ url_for('static', filename='js/jquery.magnefic.popupscript.js') }}"></script> <!-- Magnific Popup for lightboxes -->
+        <script src="{{ url_for('static', filename='js/scripts.js') }}"></script> <!-- Custom scripts -->
+    </body>
+</html>

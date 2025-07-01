@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Feedback System</title>
+
+</head>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+
+/* Documents List Styles */
+.documents-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.document-card {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    transition: transform 0.2s;
+}
+
+.document-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.document-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.document-header h3 {
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+.date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.user-input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.feedback {
+    border-top: 1px solid #eee;
+    padding-top: 1rem;
+}
+
+.feedback strong {
+    color: #2c3e50;
+}
+
+.feedback p {
+    margin-top: 0.5rem;
+    white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem auto;
+    }
+
+    .upload-section,
+    .documents-section {
+        padding: 1rem;
+    }
+
+    .document-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .date {
+        margin-top: 0.5rem;
+    }
+}
+</style>
+<body>      
+  <section class="upload-section">
+            <h2>Upload New Assignment</h2>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="file">Choose Image:</label>
+                    <input type="file" id="file" name="file" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="text">Additional Notes:</label>
+                    <textarea id="text" name="text" rows="3"></textarea>
+                </div>
+                <button type="submit">Upload & Process</button>
+            </form>
+        </section>
+
+        <!-- Documents List Section -->
+        <section class="documents-section">
+            <h2>Previous Assignments</h2>
+            <div id="documentsList"></div>
+        </section>
+    </div>
+
+    <script>
+        // Fetch and display documents
+        async function fetchDocuments() {
+            try {
+                const response = await fetch('/documents');
+                const documents = await response.json();
+                const documentsListDiv = document.getElementById('documentsList');
+                
+                documentsListDiv.innerHTML = documents.map(doc => `
+                    <div class="document-card">
+                        <div class="document-header">
+                            <h3>${doc.fileName}</h3>
+                            <span class="date">${new Date(doc.createdAt).toLocaleDateString()}</span>
+                        </div>
+                        ${doc.userInput ? `<p class="user-input"><strong>Notes:</strong> ${doc.userInput}</p>` : ''}
+                        <div class="feedback">
+                            <strong>Feedback:</strong>
+                            <p>${doc.backendResponse}</p>
+                        </div>
+                    </div>
+                `).join('');
+            } catch (error) {
+                console.error('Error fetching documents:', error);
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    alert('File uploaded successfully!');
+                    fetchDocuments(); // Refresh the documents list
+                    e.target.reset();
+                } else {
+                    alert(result.error || 'Upload failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Upload failed');
+            }
+        });
+
+        // Initial load of documents
+        fetchDocuments();
+    </script>
+</body>
+</html>
