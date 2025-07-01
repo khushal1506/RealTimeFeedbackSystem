@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="banner.png" alt="Real-Time Feedback System" width="100%">
+</p>
+
 # Real-Time Feedback System for Assignments
 
 **Domain:** Education Technology  
